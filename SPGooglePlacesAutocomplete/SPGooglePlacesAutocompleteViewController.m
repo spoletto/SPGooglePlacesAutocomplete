@@ -73,6 +73,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
     }
     
+    cell.textLabel.font = [UIFont fontWithName:@"GillSans" size:16.0];
     cell.textLabel.text = [self placeAtIndexPath:indexPath].name;
     return cell;
 }

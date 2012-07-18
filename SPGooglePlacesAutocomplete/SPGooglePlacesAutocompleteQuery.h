@@ -8,6 +8,8 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+#import "SPGooglePlacesAutocompleteUtilities.h"
+
 @interface SPGooglePlacesAutocompleteQuery : NSObject {
     NSURLConnection *googleConnection;
     NSMutableData *responseData;
