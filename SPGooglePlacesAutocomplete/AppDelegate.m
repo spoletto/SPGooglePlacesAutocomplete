@@ -8,16 +8,13 @@
 
 #import "AppDelegate.h"
 #import "SPGooglePlacesAutocompleteQuery.h"
+#import "SPGooglePlacesAutocompleteViewController.h"
+
 @implementation AppDelegate
 
 @synthesize window;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    
+- (void)testCode {
     SPGooglePlacesAutocompleteQuery *query = [SPGooglePlacesAutocompleteQuery query];
     query.input = @"370 fillmo";
     query.radius = 500;
@@ -28,6 +25,14 @@
     [query fetchPlaces:^(NSArray *places, NSError *error) {
         NSLog(@"places %@", places);
     }];
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];    
+    
+    SPGooglePlacesAutocompleteViewController *viewController = [[[SPGooglePlacesAutocompleteViewController alloc] init] autorelease];
+    self.window.rootViewController = viewController;
+    [self.window makeKeyAndVisible];
     
     return YES;
 }

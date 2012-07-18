@@ -45,6 +45,19 @@ static NSString *SPPlaceTypeStringForPlaceType(SPGooglePlacesAutocompletePlaceTy
     return self;
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"Query URL: %@", [self googleURLString]];
+}
+
+- (void)dealloc {
+    [googleConnection release];
+    [responseData release];
+    [input release];
+    [key release];
+    [language release];
+    [super dealloc];
+}
+
 - (NSString *)googleURLString {
     NSMutableString *url = [NSMutableString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&sensor=%@&key=%@",
                                                              [input stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
@@ -67,10 +80,6 @@ static NSString *SPPlaceTypeStringForPlaceType(SPGooglePlacesAutocompletePlaceTy
     return url;
 }
 
-- (NSString *)description {
-    return [NSString stringWithFormat:@"Query URL: %@", [self googleURLString]];
-}
-
 - (void)cleanup {
     [googleConnection release];
     [responseData release];
@@ -84,6 +93,7 @@ static NSString *SPPlaceTypeStringForPlaceType(SPGooglePlacesAutocompletePlaceTy
     [self cleanup];
 }
 
+#warning if "your api key" hasn't been replaced, show error
 - (void)fetchPlaces:(SPGooglePlacesAutocompleteResultBlock)block {
     [self cancelOutstandingRequests];
     self.resultBlock = block;
