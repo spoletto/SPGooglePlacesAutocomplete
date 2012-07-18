@@ -18,10 +18,10 @@ SPGooglePlacesAutocomplete requires a deployment target >= iOS 5.0.
 ### Installation
 1. Link your project against the CoreLocation framework.
 2. Copy the following files to your project:
-	* SPGooglePlacesAutocompleteUtilities.h/.m
-	* SPGooglePlacesAutocompleteQuery.h/.m
-	* SPGooglePlacesPlaceDetailQuery.h/.m
-	* SPGooglePlacesAutocompletePlace.h/.m
+    * SPGooglePlacesAutocompleteUtilities.h/.m
+    * SPGooglePlacesAutocompleteQuery.h/.m
+    * SPGooglePlacesPlaceDetailQuery.h/.m
+    * SPGooglePlacesAutocompletePlace.h/.m
 3. (Optional) If you would like to utilize the provided sample view controller for searching and mapping Places, link your project against the MapKit framework and copy the following files to your project:
     * SPGooglePlacesAutocompleteViewController.h/.m/.xib
     * locateButton(@2x).png
@@ -32,7 +32,7 @@ SPGooglePlacesAutocomplete requires a deployment target >= iOS 5.0.
 
 Instantiate a new SPGooglePlacesAutocompleteQuery and fill in the properties you'd like to specify.
 
-	``` objective-c
+    ``` objective-c
     #import "SPGooglePlacesAutocompleteQuery.h"
 
     ...
@@ -47,10 +47,10 @@ Instantiate a new SPGooglePlacesAutocompleteQuery and fill in the properties you
     
 Then, call -fetchPlaces to ping Google's API and fetch results. The resulting array will return objects of the SPGooglePlacesAutocompletePlace class.
 	
-	``` objective-c
+    ``` objective-c
 	[query fetchPlaces:^(NSArray *places, NSError *error) {
-        NSLog(@"Places returned %@", places);
-    }];
+            NSLog(@"Places returned %@", places);
+        }];
     ```
     
 If you need to update the query (for instance, as the user types), simply update the appropriate properties and call -fetchPlaces again. Any outstanding requests will automatically be cancelled and a new request with the updated properties will be issued.
@@ -59,15 +59,16 @@ If you need to update the query (for instance, as the user types), simply update
 
 The Google Places Autocomplete API will return the names of Places that match your query. It will not, however, return lat-long information about these results. SPGooglePlacesAutocomplete handles this by resolving Place results to placemarks. Simply call -resolveToPlacemark on a SPGooglePlacesAutocompletePlace:
 
-	``` objective-c
+    ``` objective-c
 	[query fetchPlaces:^(NSArray *places, NSError *error) {
-        SPGooglePlacesAutocompletePlace *place = [places firstObject];
-        if (place) {
-	    	[place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
-				NSLog(@"Placemark: %@", placemark);
+            SPGooglePlacesAutocompletePlace *place = [places firstObject];
+            if (place) {
+	        [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
+		    NSLog(@"Placemark: %@", placemark);
 	    	}];
 	    }
-    }];
+        }];
+    ```
 
 When searching for "geocode" (address) Places, the library utilizes CLGeocoder to geocode the address. When searching for "establishment" (business) Places, the library will automatically ping [The Google Places API](https://developers.google.com/places/documentation/#PlaceDetailsRequests) to fetch the details needed to geolocate the business.
 
