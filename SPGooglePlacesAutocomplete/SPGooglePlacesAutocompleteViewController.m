@@ -24,6 +24,7 @@
         searchQuery = [[SPGooglePlacesAutocompleteQuery alloc] init];
         searchQuery.types = SPPlaceTypeGeocode; // Only accept addresses.
         geocoder = [[CLGeocoder alloc] init];
+        shouldBeginEditing = YES;
     }
     return self;
 }
@@ -73,8 +74,8 @@
     MKCoordinateRegion region;
     MKCoordinateSpan span;
     
-    span.latitudeDelta = 0.1;
-    span.longitudeDelta = 0.1;
+    span.latitudeDelta = 0.02;
+    span.longitudeDelta = 0.02;
     
     region.span = span;
     region.center = placemark.location.coordinate;
@@ -92,6 +93,18 @@
     [self.mapView addAnnotation:selectedPlaceAnnotation];
 }
 
+- (void)dismissSearchControllerWhileStayingActive {
+    // Animate out the table view.
+    NSTimeInterval animationDuration = 0.3;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:animationDuration];
+    self.searchDisplayController.searchResultsTableView.alpha = 0.0;
+    [UIView commitAnimations];
+    
+    [self.searchDisplayController.searchBar setShowsCancelButton:NO animated:YES];
+    [self.searchDisplayController.searchBar resignFirstResponder];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *address = [self placeAtIndexPath:indexPath].name;
     [geocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
@@ -99,7 +112,8 @@
         if (placemark) {
             [self addPlacemarkAnnotationToMap:placemark addressString:address];
             [self recenterMapToPlacemark:placemark];
-            [self.searchDisplayController setActive:NO]; // Dismiss the search controller.
+            [self dismissSearchControllerWhileStayingActive];
+            [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
         }
 #warning handle else, use error
     }];
@@ -129,6 +143,32 @@
 }
 
 #pragma mark -
+#pragma mark UISearchBar Delegate
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (![searchBar isFirstResponder]) {
+        // User tapped the 'clear' button.
+        shouldBeginEditing = NO;
+        [self.searchDisplayController setActive:NO];
+        [self.mapView removeAnnotation:selectedPlaceAnnotation];
+    }
+}
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    if (shouldBeginEditing) {
+        // Animate in the table view.
+        NSTimeInterval animationDuration = 0.3;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:animationDuration];
+        self.searchDisplayController.searchResultsTableView.alpha = 1.0;
+        [UIView commitAnimations];
+    }
+    BOOL boolToReturn = shouldBeginEditing;
+    shouldBeginEditing = YES;
+    return boolToReturn;
+}
+
+#pragma mark -
 #pragma mark MKMapView Delegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapViewIn viewForAnnotation:(id <MKAnnotation>)annotation {
@@ -148,6 +188,11 @@
     annotationView.rightCalloutAccessoryView = detailButton;
     
     return annotationView;
+}
+
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
+    // Whenever we've dropped a pin on the map, immediately select it to present its callout bubble.
+    [self.mapView selectAnnotation:selectedPlaceAnnotation animated:YES];
 }
 
 - (void)annotationDetailButtonPressed:(id)sender {

@@ -15,6 +15,8 @@
     SPGooglePlacesAutocompleteQuery *searchQuery;
     CLGeocoder *geocoder;
     MKPointAnnotation *selectedPlaceAnnotation;
+    
+    BOOL shouldBeginEditing;
 }
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
