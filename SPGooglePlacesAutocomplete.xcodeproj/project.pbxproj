@@ -1,0 +1,282 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9C4A632215B64A3F00E15FBA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A632115B64A3F00E15FBA /* UIKit.framework */; };
+		9C4A632415B64A3F00E15FBA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A632315B64A3F00E15FBA /* Foundation.framework */; };
+		9C4A632615B64A3F00E15FBA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A632515B64A3F00E15FBA /* CoreGraphics.framework */; };
+		9C4A632C15B64A3F00E15FBA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C4A632A15B64A3F00E15FBA /* InfoPlist.strings */; };
+		9C4A632E15B64A3F00E15FBA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4A632D15B64A3F00E15FBA /* main.m */; };
+		9C4A633215B64A3F00E15FBA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4A633115B64A3F00E15FBA /* AppDelegate.m */; };
+		9C4A633A15B64AF700E15FBA /* SPGooglePlacesAutocompleteQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4A633915B64AF700E15FBA /* SPGooglePlacesAutocompleteQuery.m */; };
+		9C4A633C15B64C9200E15FBA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A633B15B64C9200E15FBA /* CoreLocation.framework */; };
+		9C4A633F15B64FA400E15FBA /* SPGooglePlacesAutocompletePlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4A633E15B64FA400E15FBA /* SPGooglePlacesAutocompletePlace.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9C4A631D15B64A3F00E15FBA /* SPGooglePlacesAutocomplete.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPGooglePlacesAutocomplete.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C4A632115B64A3F00E15FBA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9C4A632315B64A3F00E15FBA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9C4A632515B64A3F00E15FBA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9C4A632915B64A3F00E15FBA /* SPGooglePlacesAutocomplete-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SPGooglePlacesAutocomplete-Info.plist"; sourceTree = "<group>"; };
+		9C4A632B15B64A3F00E15FBA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9C4A632D15B64A3F00E15FBA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9C4A632F15B64A3F00E15FBA /* SPGooglePlacesAutocomplete-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SPGooglePlacesAutocomplete-Prefix.pch"; sourceTree = "<group>"; };
+		9C4A633015B64A3F00E15FBA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9C4A633115B64A3F00E15FBA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9C4A633815B64AF700E15FBA /* SPGooglePlacesAutocompleteQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesAutocompleteQuery.h; sourceTree = "<group>"; };
+		9C4A633915B64AF700E15FBA /* SPGooglePlacesAutocompleteQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGooglePlacesAutocompleteQuery.m; sourceTree = "<group>"; };
+		9C4A633B15B64C9200E15FBA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		9C4A633D15B64FA400E15FBA /* SPGooglePlacesAutocompletePlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesAutocompletePlace.h; sourceTree = "<group>"; };
+		9C4A633E15B64FA400E15FBA /* SPGooglePlacesAutocompletePlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGooglePlacesAutocompletePlace.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9C4A631A15B64A3F00E15FBA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C4A633C15B64C9200E15FBA /* CoreLocation.framework in Frameworks */,
+				9C4A632215B64A3F00E15FBA /* UIKit.framework in Frameworks */,
+				9C4A632415B64A3F00E15FBA /* Foundation.framework in Frameworks */,
+				9C4A632615B64A3F00E15FBA /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9C4A631215B64A3F00E15FBA = {
+			isa = PBXGroup;
+			children = (
+				9C4A632715B64A3F00E15FBA /* SPGooglePlacesAutocomplete */,
+				9C4A632015B64A3F00E15FBA /* Frameworks */,
+				9C4A631E15B64A3F00E15FBA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9C4A631E15B64A3F00E15FBA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9C4A631D15B64A3F00E15FBA /* SPGooglePlacesAutocomplete.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9C4A632015B64A3F00E15FBA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9C4A633B15B64C9200E15FBA /* CoreLocation.framework */,
+				9C4A632115B64A3F00E15FBA /* UIKit.framework */,
+				9C4A632315B64A3F00E15FBA /* Foundation.framework */,
+				9C4A632515B64A3F00E15FBA /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9C4A632715B64A3F00E15FBA /* SPGooglePlacesAutocomplete */ = {
+			isa = PBXGroup;
+			children = (
+				9C4A633015B64A3F00E15FBA /* AppDelegate.h */,
+				9C4A633115B64A3F00E15FBA /* AppDelegate.m */,
+				9C4A632815B64A3F00E15FBA /* Supporting Files */,
+				9C4A633815B64AF700E15FBA /* SPGooglePlacesAutocompleteQuery.h */,
+				9C4A633915B64AF700E15FBA /* SPGooglePlacesAutocompleteQuery.m */,
+				9C4A633D15B64FA400E15FBA /* SPGooglePlacesAutocompletePlace.h */,
+				9C4A633E15B64FA400E15FBA /* SPGooglePlacesAutocompletePlace.m */,
+			);
+			path = SPGooglePlacesAutocomplete;
+			sourceTree = "<group>";
+		};
+		9C4A632815B64A3F00E15FBA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9C4A632915B64A3F00E15FBA /* SPGooglePlacesAutocomplete-Info.plist */,
+				9C4A632A15B64A3F00E15FBA /* InfoPlist.strings */,
+				9C4A632D15B64A3F00E15FBA /* main.m */,
+				9C4A632F15B64A3F00E15FBA /* SPGooglePlacesAutocomplete-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9C4A631C15B64A3F00E15FBA /* SPGooglePlacesAutocomplete */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C4A633515B64A3F00E15FBA /* Build configuration list for PBXNativeTarget "SPGooglePlacesAutocomplete" */;
+			buildPhases = (
+				9C4A631915B64A3F00E15FBA /* Sources */,
+				9C4A631A15B64A3F00E15FBA /* Frameworks */,
+				9C4A631B15B64A3F00E15FBA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SPGooglePlacesAutocomplete;
+			productName = SPGooglePlacesAutocomplete;
+			productReference = 9C4A631D15B64A3F00E15FBA /* SPGooglePlacesAutocomplete.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9C4A631415B64A3F00E15FBA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Stephen Poletto";
+			};
+			buildConfigurationList = 9C4A631715B64A3F00E15FBA /* Build configuration list for PBXProject "SPGooglePlacesAutocomplete" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9C4A631215B64A3F00E15FBA;
+			productRefGroup = 9C4A631E15B64A3F00E15FBA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9C4A631C15B64A3F00E15FBA /* SPGooglePlacesAutocomplete */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9C4A631B15B64A3F00E15FBA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C4A632C15B64A3F00E15FBA /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9C4A631915B64A3F00E15FBA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C4A632E15B64A3F00E15FBA /* main.m in Sources */,
+				9C4A633215B64A3F00E15FBA /* AppDelegate.m in Sources */,
+				9C4A633A15B64AF700E15FBA /* SPGooglePlacesAutocompleteQuery.m in Sources */,
+				9C4A633F15B64FA400E15FBA /* SPGooglePlacesAutocompletePlace.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9C4A632A15B64A3F00E15FBA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9C4A632B15B64A3F00E15FBA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9C4A633315B64A3F00E15FBA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9C4A633415B64A3F00E15FBA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9C4A633615B64A3F00E15FBA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SPGooglePlacesAutocomplete/SPGooglePlacesAutocomplete-Prefix.pch";
+				INFOPLIST_FILE = "SPGooglePlacesAutocomplete/SPGooglePlacesAutocomplete-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		9C4A633715B64A3F00E15FBA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SPGooglePlacesAutocomplete/SPGooglePlacesAutocomplete-Prefix.pch";
+				INFOPLIST_FILE = "SPGooglePlacesAutocomplete/SPGooglePlacesAutocomplete-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9C4A631715B64A3F00E15FBA /* Build configuration list for PBXProject "SPGooglePlacesAutocomplete" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C4A633315B64A3F00E15FBA /* Debug */,
+				9C4A633415B64A3F00E15FBA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C4A633515B64A3F00E15FBA /* Build configuration list for PBXNativeTarget "SPGooglePlacesAutocomplete" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C4A633615B64A3F00E15FBA /* Debug */,
+				9C4A633715B64A3F00E15FBA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9C4A631415B64A3F00E15FBA /* Project object */;
+}
