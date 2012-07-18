@@ -32,7 +32,7 @@ SPGooglePlacesAutocomplete requires a deployment target >= iOS 5.0.
 
 Instantiate a new SPGooglePlacesAutocompleteQuery and fill in the properties you'd like to specify.
 
-    ``` objective-c
+    ```objective-c
     #import "SPGooglePlacesAutocompleteQuery.h"
 
     ...
@@ -47,7 +47,7 @@ Instantiate a new SPGooglePlacesAutocompleteQuery and fill in the properties you
     
 Then, call -fetchPlaces to ping Google's API and fetch results. The resulting array will return objects of the SPGooglePlacesAutocompletePlace class.
 	
-    ``` objective-c
+    ```objective-c
 	[query fetchPlaces:^(NSArray *places, NSError *error) {
             NSLog(@"Places returned %@", places);
         }];
@@ -59,7 +59,7 @@ If you need to update the query (for instance, as the user types), simply update
 
 The Google Places Autocomplete API will return the names of Places that match your query. It will not, however, return lat-long information about these results. SPGooglePlacesAutocomplete handles this by resolving Place results to placemarks. Simply call -resolveToPlacemark on a SPGooglePlacesAutocompletePlace:
 
-    ``` objective-c
+    ```objective-c
 	[query fetchPlaces:^(NSArray *places, NSError *error) {
             SPGooglePlacesAutocompletePlace *place = [places firstObject];
             if (place) {
