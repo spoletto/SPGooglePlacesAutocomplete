@@ -22,6 +22,8 @@ typedef void (^SPGooglePlacesPlaceDetailResultBlock)(NSDictionary *placeDictiona
 extern SPGooglePlacesAutocompletePlaceType SPPlaceTypeFromDictionary(NSDictionary *placeDictionary);
 extern NSString *SPBooleanStringForBool(BOOL boolean);
 extern NSString *SPPlaceTypeStringForPlaceType(SPGooglePlacesAutocompletePlaceType type);
+extern void SPEnsureGoogleAPIKey();
+extern void SPPresentAlertViewWithErrorAndTitle(NSError *error, NSString *title);
 
 @interface NSArray(SPFoundationAdditions)
 - (id)onlyObject;

@@ -45,19 +45,30 @@
     SPGooglePlacesPlaceDetailQuery *query = [SPGooglePlacesPlaceDetailQuery query];
     query.reference = self.reference;
     [query fetchPlaceDetail:^(NSDictionary *placeDictionary, NSError *error) {
-#warning errors
-        NSString *addressString = [placeDictionary objectForKey:@"formatted_address"];
-        [[self geocoder] geocodeAddressString:addressString completionHandler:^(NSArray *placemarks, NSError *error) {
-            CLPlacemark *placemark = [placemarks onlyObject];
-            block(placemark, self.name, error);
-        }];
+        if (error) {
+            block(nil, nil, error);
+        } else {
+            NSString *addressString = [placeDictionary objectForKey:@"formatted_address"];
+            [[self geocoder] geocodeAddressString:addressString completionHandler:^(NSArray *placemarks, NSError *error) {
+                if (error) {
+                    block(nil, nil, error);
+                } else {
+                    CLPlacemark *placemark = [placemarks onlyObject];
+                    block(placemark, self.name, error);
+                }
+            }];
+        }
     }];
 }
 
 - (void)resolveGecodePlaceToPlacemark:(SPGooglePlacesPlacemarkResultBlock)block {
     [[self geocoder] geocodeAddressString:self.name completionHandler:^(NSArray *placemarks, NSError *error) {
-        CLPlacemark *placemark = [placemarks onlyObject];
-        block(placemark, self.name, error);
+        if (error) {
+            block(nil, nil, error);
+        } else {
+            CLPlacemark *placemark = [placemarks onlyObject];
+            block(placemark, self.name, error);
+        }
     }];
 }
 

@@ -119,13 +119,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SPGooglePlacesAutocompletePlace *place = [self placeAtIndexPath:indexPath];
     [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
-        if (placemark) {
+        if (error) {
+            SPPresentAlertViewWithErrorAndTitle(error, @"Could not map selected Place");
+        } else if (placemark) {
             [self addPlacemarkAnnotationToMap:placemark addressString:addressString];
             [self recenterMapToPlacemark:placemark];
             [self dismissSearchControllerWhileStayingActive];
             [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
         }
-#warning handle else, use error
     }];
 }
 
@@ -136,8 +137,8 @@
     searchQuery.location = self.mapView.userLocation.coordinate;
     searchQuery.input = searchString;
     [searchQuery fetchPlaces:^(NSArray *places, NSError *error) {
-        if (!places) {
-#warning present error
+        if (error) {
+            SPPresentAlertViewWithErrorAndTitle(error, @"Could not fetch Places");
         } else {
             [searchResultPlaces release];
             searchResultPlaces = [places retain];
@@ -207,8 +208,7 @@
 }
 
 - (void)annotationDetailButtonPressed:(id)sender {
-    // Your application logic here.
-#warning make a delegate -userSelectedLocation:
+    // Detail view controller application logic here.
 }
 
 @end

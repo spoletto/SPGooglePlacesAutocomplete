@@ -83,8 +83,8 @@
     [self cleanup];
 }
 
-#warning if "your api key" hasn't been replaced, show error
 - (void)fetchPlaces:(SPGooglePlacesAutocompleteResultBlock)block {
+    SPEnsureGoogleAPIKey();
     [self cancelOutstandingRequests];
     self.resultBlock = block;
     
@@ -136,7 +136,7 @@
     if (connection == googleConnection) {
         NSError *error;
         NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
-        if (!response) {
+        if (error) {
             [self failWithError:error];
             return;
         }
