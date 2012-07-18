@@ -84,7 +84,16 @@
 }
 
 - (void)fetchPlaces:(SPGooglePlacesAutocompleteResultBlock)block {
-    SPEnsureGoogleAPIKey();
+    if (!SPEnsureGoogleAPIKey()) {
+        return;
+    }
+    
+    if (SPIsEmptyString(self.input)) {
+        // Empty input string. Don't even bother hitting Google.
+        block([NSArray array], nil);
+        return;
+    }
+    
     [self cancelOutstandingRequests];
     self.resultBlock = block;
     
@@ -134,7 +143,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     if (connection == googleConnection) {
-        NSError *error;
+        NSError *error = nil;
         NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
         if (error) {
             [self failWithError:error];
@@ -146,10 +155,12 @@
         }
         if ([[response objectForKey:@"status"] isEqualToString:@"OK"]) {
             [self succeedWithPlaces:[response objectForKey:@"predictions"]];
+            return;
         }
         
-        // Must have received a OVER_QUERY_LIMIT, REQUEST_DENIED or INVALID_REQUEST.
-        // custom errors: https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorObjectsDomains/ErrorObjectsDomains.html
+        // Must have received a status of OVER_QUERY_LIMIT, REQUEST_DENIED or INVALID_REQUEST.
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[response objectForKey:@"status"] forKey:NSLocalizedDescriptionKey];
+        [self failWithError:[NSError errorWithDomain:@"com.spoletto.googleplaces" code:kGoogleAPINSErrorCode userInfo:userInfo]];
     }
 }
 

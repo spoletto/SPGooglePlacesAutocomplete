@@ -66,7 +66,10 @@
 }
 
 - (void)fetchPlaceDetail:(SPGooglePlacesPlaceDetailResultBlock)block {
-    SPEnsureGoogleAPIKey();
+    if (!SPEnsureGoogleAPIKey()) {
+        return;
+    }
+    
     [self cancelOutstandingRequests];
     self.resultBlock = block;
     
@@ -112,7 +115,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     if (connection == googleConnection) {
-        NSError *error;
+        NSError *error = nil;
         NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
         if (error) {
             [self failWithError:error];
@@ -121,14 +124,10 @@
         if ([[response objectForKey:@"status"] isEqualToString:@"OK"]) {
             [self succeedWithPlace:[response objectForKey:@"result"]];
         }
-        
-        // UNKNOWN_ERROR indicates a server-side error; trying again may be successful.
-        // ZERO_RESULTS indicates that the reference was valid but no longer refers to a valid result. This may occur if the establishment is no longer in business.
-         //   OVER_QUERY_LIMIT indicates that you are over your quota.
-         //   REQUEST_DENIED indicates that your request was denied, generally because of lack of a sensor parameter.
-         //   INVALID_REQUEST generally indicates that the query (reference) is missing.
-        
-        // custom errors: https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorObjectsDomains/ErrorObjectsDomains.html
+                
+        // Must have received a status of UNKNOWN_ERROR, ZERO_RESULTS, OVER_QUERY_LIMIT, REQUEST_DENIED or INVALID_REQUEST.
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[response objectForKey:@"status"] forKey:NSLocalizedDescriptionKey];
+        [self failWithError:[NSError errorWithDomain:@"com.spoletto.googleplaces" code:kGoogleAPINSErrorCode userInfo:userInfo]];
     }
 }
 
