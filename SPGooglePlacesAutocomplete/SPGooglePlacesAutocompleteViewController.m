@@ -45,6 +45,19 @@
     [super dealloc];
 }
 
+- (IBAction)recenterMapToUserLocation:(id)sender {
+    MKCoordinateRegion region;
+    MKCoordinateSpan span;
+    
+    span.latitudeDelta = 0.02;
+    span.longitudeDelta = 0.02;
+    
+    region.span = span;
+    region.center = self.mapView.userLocation.coordinate;
+    
+    [self.mapView setRegion:region animated:YES];
+}
+
 #pragma mark -
 #pragma mark UITableViewDataSource
 
