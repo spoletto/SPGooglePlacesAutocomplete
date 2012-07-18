@@ -37,6 +37,7 @@
 }
 
 - (void)dealloc {
+    [selectedPlaceAnnotation release];
     [mapView release];
     [searchQuery release];
     [super dealloc];
