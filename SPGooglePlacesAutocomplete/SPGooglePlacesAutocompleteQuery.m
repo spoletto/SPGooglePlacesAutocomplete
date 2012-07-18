@@ -15,14 +15,6 @@
 @property (nonatomic, copy, readwrite) SPGooglePlacesAutocompleteResultBlock resultBlock;
 @end
 
-static NSString *SPBooleanStringForBool(BOOL boolean) {
-    return boolean ? @"true" : @"false";
-}
-
-static NSString *SPPlaceTypeStringForPlaceType(SPGooglePlacesAutocompletePlaceType type) {
-    return (type == SPPlaceTypeGeocode) ? @"geocode" : @"establishment";
-}
-
 @implementation SPGooglePlacesAutocompleteQuery
 
 @synthesize input, sensor, key, offset, location, radius, language, types;

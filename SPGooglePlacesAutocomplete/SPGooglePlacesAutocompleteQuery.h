@@ -8,15 +8,6 @@
 
 #import <CoreLocation/CoreLocation.h>
 
-// Upon success, 'places' will be an array of SPGooglePlacesAutocompletePlaces.
-// Upon failure, 'places' will be nil.
-typedef void (^SPGooglePlacesAutocompleteResultBlock)(NSArray *places, NSError *error);
-
-typedef enum {
-    SPPlaceTypeGeocode = 0,
-    SPPlaceTypeEstablishment
-} SPGooglePlacesAutocompletePlaceType;
-
 @interface SPGooglePlacesAutocompleteQuery : NSObject {
     NSURLConnection *googleConnection;
     NSMutableData *responseData;

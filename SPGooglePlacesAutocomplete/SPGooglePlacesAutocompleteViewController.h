@@ -13,7 +13,6 @@
 @interface SPGooglePlacesAutocompleteViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, MKMapViewDelegate> {
     NSArray *searchResultPlaces;
     SPGooglePlacesAutocompleteQuery *searchQuery;
-    CLGeocoder *geocoder;
     MKPointAnnotation *selectedPlaceAnnotation;
     
     BOOL shouldBeginEditing;

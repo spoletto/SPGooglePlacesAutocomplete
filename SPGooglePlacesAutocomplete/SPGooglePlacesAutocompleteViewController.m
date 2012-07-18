@@ -9,7 +9,6 @@
 #import "SPGooglePlacesAutocompleteViewController.h"
 #import "SPGooglePlacesAutocompleteQuery.h"
 #import "SPGooglePlacesAutocompletePlace.h"
-#import "SPFoundationAdditions.h"
 
 @interface SPGooglePlacesAutocompleteViewController ()
 
@@ -23,7 +22,6 @@
     if (self) {
         searchQuery = [[SPGooglePlacesAutocompleteQuery alloc] init];
         searchQuery.types = SPPlaceTypeGeocode; // Only accept addresses.
-        geocoder = [[CLGeocoder alloc] init];
         shouldBeginEditing = YES;
     }
     return self;
@@ -41,7 +39,6 @@
 - (void)dealloc {
     [mapView release];
     [searchQuery release];
-    [geocoder release];
     [super dealloc];
 }
 
@@ -119,11 +116,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *address = [self placeAtIndexPath:indexPath].name;
-    [geocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
-        CLPlacemark *placemark = [placemarks onlyObject];
+    SPGooglePlacesAutocompletePlace *place = [self placeAtIndexPath:indexPath];
+    [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
         if (placemark) {
-            [self addPlacemarkAnnotationToMap:placemark addressString:address];
+            [self addPlacemarkAnnotationToMap:placemark addressString:addressString];
             [self recenterMapToPlacemark:placemark];
             [self dismissSearchControllerWhileStayingActive];
             [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -134,8 +130,9 @@
 
 #pragma mark -
 #pragma mark UISearchDisplayDelegate
-#warning should use user location in search
+
 - (void)handleSearchForSearchString:(NSString *)searchString {
+    searchQuery.location = self.mapView.userLocation.coordinate;
     searchQuery.input = searchString;
     [searchQuery fetchPlaces:^(NSArray *places, NSError *error) {
         if (!places) {
