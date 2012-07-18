@@ -37,6 +37,6 @@
 /*!
  Resolves the place to a CLPlacemark, issuing  Google Place Details request if needed.
  */
-- (void)resolveToPlacemark:(SPGooglePlacesPlaceDetailResultBlock)block;
+- (void)resolveToPlacemark:(SPGooglePlacesPlacemarkResultBlock)block;
 
 @end

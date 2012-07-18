@@ -21,7 +21,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         searchQuery = [[SPGooglePlacesAutocompleteQuery alloc] init];
-        searchQuery.types = SPPlaceTypeGeocode; // Only accept addresses.
+        searchQuery.radius = 100.0;
         shouldBeginEditing = YES;
     }
     return self;

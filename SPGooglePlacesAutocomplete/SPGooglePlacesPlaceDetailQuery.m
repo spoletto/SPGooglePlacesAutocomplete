@@ -1,23 +1,22 @@
 //
-//  SPGooglePlacesAutocompleteQuery.m
+//  SPGooglePlacesPlaceDetailQuery.m
 //  SPGooglePlacesAutocomplete
 //
-//  Created by Stephen Poletto on 7/17/12.
+//  Created by Stephen Poletto on 7/18/12.
 //  Copyright (c) 2012 Stephen Poletto. All rights reserved.
 //
 
-#import "SPGooglePlacesAutocompleteQuery.h"
-#import "SPGooglePlacesAutocompletePlace.h"
+#import "SPGooglePlacesPlaceDetailQuery.h"
 
-@interface SPGooglePlacesAutocompleteQuery()
-@property (nonatomic, copy, readwrite) SPGooglePlacesAutocompleteResultBlock resultBlock;
+@interface SPGooglePlacesPlaceDetailQuery()
+@property (nonatomic, copy, readwrite) SPGooglePlacesPlaceDetailResultBlock resultBlock;
 @end
 
-@implementation SPGooglePlacesAutocompleteQuery
+@implementation SPGooglePlacesPlaceDetailQuery
 
-@synthesize input, sensor, key, offset, location, radius, language, types, resultBlock;
+@synthesize reference, sensor, key, language, resultBlock;
 
-+ (SPGooglePlacesAutocompleteQuery *)query {
++ (SPGooglePlacesPlaceDetailQuery *)query {
     return [[[self alloc] init] autorelease];
 }
 
@@ -27,10 +26,6 @@
         // Setup default property values.
         self.sensor = YES;
         self.key = kGoogleAPIKey;
-        self.offset = NSNotFound;
-        self.location = CLLocationCoordinate2DMake(-1, -1);
-        self.radius = NSNotFound;
-        self.types = -1;
     }
     return self;
 }
@@ -42,30 +37,17 @@
 - (void)dealloc {
     [googleConnection release];
     [responseData release];
-    [input release];
+    [reference release];
     [key release];
     [language release];
     [super dealloc];
 }
 
 - (NSString *)googleURLString {
-    NSMutableString *url = [NSMutableString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&sensor=%@&key=%@",
-                                                             [input stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                                                             SPBooleanStringForBool(sensor), key];
-    if (offset != NSNotFound) {
-        [url appendFormat:@"&offset=%u", offset];
-    }
-    if (location.latitude != -1) {
-        [url appendFormat:@"&location=%f,%f", location.latitude, location.longitude];
-    }
-    if (radius != NSNotFound) {
-        [url appendFormat:@"&radius=%f", radius];
-    }
+    NSMutableString *url = [NSMutableString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?reference=%@&sensor=%@&key=%@",
+                            reference, SPBooleanStringForBool(sensor), key];
     if (language) {
         [url appendFormat:@"&language=%@", language];
-    }
-    if (types != -1) {
-        [url appendFormat:@"&types=%@", SPPlaceTypeStringForPlaceType(types)];
     }
     return url;
 }
@@ -84,7 +66,7 @@
 }
 
 #warning if "your api key" hasn't been replaced, show error
-- (void)fetchPlaces:(SPGooglePlacesAutocompleteResultBlock)block {
+- (void)fetchPlaceDetail:(SPGooglePlacesPlaceDetailResultBlock)block {
     [self cancelOutstandingRequests];
     self.resultBlock = block;
     
@@ -103,13 +85,9 @@
     [self cleanup];
 }
 
-- (void)succeedWithPlaces:(NSArray *)places {
-    NSMutableArray *parsedPlaces = [NSMutableArray array];
-    for (NSDictionary *place in places) {
-        [parsedPlaces addObject:[SPGooglePlacesAutocompletePlace placeFromDictionary:place]];
-    }
+- (void)succeedWithPlace:(NSDictionary *)placeDictionary {
     if (self.resultBlock != nil) {
-        self.resultBlock(parsedPlaces, nil);
+        self.resultBlock(placeDictionary, nil);
     }
     [self cleanup];
 }
@@ -140,15 +118,16 @@
             [self failWithError:error];
             return;
         }
-        if ([[response objectForKey:@"status"] isEqualToString:@"ZERO_RESULTS"]) {
-            [self succeedWithPlaces:[NSArray array]];
-            return;
-        }
         if ([[response objectForKey:@"status"] isEqualToString:@"OK"]) {
-            [self succeedWithPlaces:[response objectForKey:@"predictions"]];
+            [self succeedWithPlace:[response objectForKey:@"result"]];
         }
         
-        // Must have received a OVER_QUERY_LIMIT, REQUEST_DENIED or INVALID_REQUEST.
+        // UNKNOWN_ERROR indicates a server-side error; trying again may be successful.
+        // ZERO_RESULTS indicates that the reference was valid but no longer refers to a valid result. This may occur if the establishment is no longer in business.
+         //   OVER_QUERY_LIMIT indicates that you are over your quota.
+         //   REQUEST_DENIED indicates that your request was denied, generally because of lack of a sensor parameter.
+         //   INVALID_REQUEST generally indicates that the query (reference) is missing.
+        
         // custom errors: https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorObjectsDomains/ErrorObjectsDomains.html
     }
 }

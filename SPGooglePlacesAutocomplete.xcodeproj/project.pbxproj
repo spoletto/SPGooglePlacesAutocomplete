@@ -24,6 +24,7 @@
 		9C4A63A715B6C01100E15FBA /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4A63A515B6C01100E15FBA /* location@2x.png */; };
 		9C4A63AE15B6C0DB00E15FBA /* locateButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4A63AC15B6C0DB00E15FBA /* locateButton.png */; };
 		9C4A63AF15B6C0DB00E15FBA /* locateButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4A63AD15B6C0DB00E15FBA /* locateButton@2x.png */; };
+		9C4A63B215B73EA300E15FBA /* SPGooglePlacesPlaceDetailQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4A63B115B73EA200E15FBA /* SPGooglePlacesPlaceDetailQuery.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,8 @@
 		9C4A63A515B6C01100E15FBA /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
 		9C4A63AC15B6C0DB00E15FBA /* locateButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locateButton.png; sourceTree = "<group>"; };
 		9C4A63AD15B6C0DB00E15FBA /* locateButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locateButton@2x.png"; sourceTree = "<group>"; };
+		9C4A63B015B73EA200E15FBA /* SPGooglePlacesPlaceDetailQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesPlaceDetailQuery.h; sourceTree = "<group>"; };
+		9C4A63B115B73EA200E15FBA /* SPGooglePlacesPlaceDetailQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGooglePlacesPlaceDetailQuery.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +111,8 @@
 				9C4A633115B64A3F00E15FBA /* AppDelegate.m */,
 				9C4A633815B64AF700E15FBA /* SPGooglePlacesAutocompleteQuery.h */,
 				9C4A633915B64AF700E15FBA /* SPGooglePlacesAutocompleteQuery.m */,
+				9C4A63B015B73EA200E15FBA /* SPGooglePlacesPlaceDetailQuery.h */,
+				9C4A63B115B73EA200E15FBA /* SPGooglePlacesPlaceDetailQuery.m */,
 				9C4A633D15B64FA400E15FBA /* SPGooglePlacesAutocompletePlace.h */,
 				9C4A633E15B64FA400E15FBA /* SPGooglePlacesAutocompletePlace.m */,
 				9C4A634415B6950B00E15FBA /* SPGooglePlacesAutocompleteViewController.h */,
@@ -214,6 +219,7 @@
 				9C4A633F15B64FA400E15FBA /* SPGooglePlacesAutocompletePlace.m in Sources */,
 				9C4A634715B6950C00E15FBA /* SPGooglePlacesAutocompleteViewController.m in Sources */,
 				9C4A63A015B6A4FB00E15FBA /* SPGooglePlacesAutocompleteUtilities.m in Sources */,
+				9C4A63B215B73EA300E15FBA /* SPGooglePlacesPlaceDetailQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
