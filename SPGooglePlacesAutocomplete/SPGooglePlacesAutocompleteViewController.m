@@ -175,6 +175,8 @@
         [UIView setAnimationDuration:animationDuration];
         self.searchDisplayController.searchResultsTableView.alpha = 1.0;
         [UIView commitAnimations];
+        
+        [self.searchDisplayController.searchBar setShowsCancelButton:YES animated:YES];
     }
     BOOL boolToReturn = shouldBeginEditing;
     shouldBeginEditing = YES;
