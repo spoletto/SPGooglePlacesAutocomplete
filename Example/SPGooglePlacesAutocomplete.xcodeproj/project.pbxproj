@@ -38,6 +38,7 @@
 		4FE6386316DBBE6D003E8E8A /* SPGooglePlacesAutocompleteUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPGooglePlacesAutocompleteUtilities.m; path = ../../Source/SPGooglePlacesAutocompleteUtilities.m; sourceTree = "<group>"; };
 		4FE6386416DBBE6D003E8E8A /* SPGooglePlacesPlaceDetailQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPGooglePlacesPlaceDetailQuery.h; path = ../../Source/SPGooglePlacesPlaceDetailQuery.h; sourceTree = "<group>"; };
 		4FE6386516DBBE6D003E8E8A /* SPGooglePlacesPlaceDetailQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPGooglePlacesPlaceDetailQuery.m; path = ../../Source/SPGooglePlacesPlaceDetailQuery.m; sourceTree = "<group>"; };
+		4FE6386A16DBBF50003E8E8A /* APIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APIKey.h; path = ../../Source/APIKey.h; sourceTree = "<group>"; };
 		9C4A631D15B64A3F00E15FBA /* SPGooglePlacesAutocomplete.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPGooglePlacesAutocomplete.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C4A632115B64A3F00E15FBA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9C4A632315B64A3F00E15FBA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -78,6 +79,7 @@
 		4FE6385D16DBBE43003E8E8A /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				4FE6386A16DBBF50003E8E8A /* APIKey.h */,
 				4FE6385E16DBBE6D003E8E8A /* SPGooglePlacesAutocompletePlace.h */,
 				4FE6385F16DBBE6D003E8E8A /* SPGooglePlacesAutocompletePlace.m */,
 				4FE6386016DBBE6D003E8E8A /* SPGooglePlacesAutocompleteQuery.h */,
