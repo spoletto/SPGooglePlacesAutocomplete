@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4FE6385C16DBBC44003E8E8A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FE6385B16DBBC44003E8E8A /* Default-568h@2x.png */; };
 		9C4A632215B64A3F00E15FBA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A632115B64A3F00E15FBA /* UIKit.framework */; };
 		9C4A632415B64A3F00E15FBA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A632315B64A3F00E15FBA /* Foundation.framework */; };
 		9C4A632615B64A3F00E15FBA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A632515B64A3F00E15FBA /* CoreGraphics.framework */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4FE6385B16DBBC44003E8E8A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		9C4A631D15B64A3F00E15FBA /* SPGooglePlacesAutocomplete.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPGooglePlacesAutocomplete.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C4A632115B64A3F00E15FBA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9C4A632315B64A3F00E15FBA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -127,6 +129,7 @@
 		9C4A632815B64A3F00E15FBA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4FE6385B16DBBC44003E8E8A /* Default-568h@2x.png */,
 				9C4A632915B64A3F00E15FBA /* SPGooglePlacesAutocomplete-Info.plist */,
 				9C4A632A15B64A3F00E15FBA /* InfoPlist.strings */,
 				9C4A632D15B64A3F00E15FBA /* main.m */,
@@ -203,6 +206,7 @@
 				9C4A63A715B6C01100E15FBA /* location@2x.png in Resources */,
 				9C4A63AE15B6C0DB00E15FBA /* locateButton.png in Resources */,
 				9C4A63AF15B6C0DB00E15FBA /* locateButton@2x.png in Resources */,
+				4FE6385C16DBBC44003E8E8A /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +289,7 @@
 		9C4A633615B64A3F00E15FBA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPGooglePlacesAutocomplete/SPGooglePlacesAutocomplete-Prefix.pch";
 				INFOPLIST_FILE = "SPGooglePlacesAutocomplete/SPGooglePlacesAutocomplete-Info.plist";
@@ -297,6 +302,7 @@
 		9C4A633715B64A3F00E15FBA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPGooglePlacesAutocomplete/SPGooglePlacesAutocomplete-Prefix.pch";
 				INFOPLIST_FILE = "SPGooglePlacesAutocomplete/SPGooglePlacesAutocomplete-Info.plist";
@@ -325,6 +331,7 @@
 				9C4A633715B64A3F00E15FBA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
