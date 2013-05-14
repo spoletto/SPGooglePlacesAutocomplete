@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 Stephen Poletto. All rights reserved.
 //
 
-#import "APIKey.h"
 #define kGoogleAPINSErrorCode 42
 
 @class CLPlacemark;
