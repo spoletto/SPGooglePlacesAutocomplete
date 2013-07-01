@@ -7,6 +7,7 @@
 //
 
 #import "SPGooglePlacesAutocompletePlace.h"
+#import "SPGooglePlacesAutocompletePlaceDetails.h"
 #import "SPGooglePlacesPlaceDetailQuery.h"
 
 @interface SPGooglePlacesAutocompletePlace()
@@ -41,14 +42,19 @@
     return geocoder;
 }
 
-- (void)resolveEstablishmentPlaceToPlacemark:(SPGooglePlacesPlacemarkResultBlock)block {
+- (void)fetchPlaceDetails:(SPGooglePlacesPlaceDetailResultBlock)block {
     SPGooglePlacesPlaceDetailQuery *query = [SPGooglePlacesPlaceDetailQuery query];
     query.reference = self.reference;
-    [query fetchPlaceDetail:^(NSDictionary *placeDictionary, NSError *error) {
+    [query fetchPlaceDetail:block];
+}
+
+- (void)resolveEstablishmentPlaceToPlacemark:(SPGooglePlacesPlacemarkResultBlock)block {
+    
+    [self fetchPlaceDetails:^(SPGooglePlacesAutocompletePlaceDetails *placeDetails, NSError *error) {
         if (error) {
             block(nil, nil, error);
         } else {
-            NSString *addressString = [placeDictionary objectForKey:@"formatted_address"];
+            NSString *addressString = placeDetails.formattedAddress;
             [[self geocoder] geocodeAddressString:addressString completionHandler:^(NSArray *placemarks, NSError *error) {
                 if (error) {
                     block(nil, nil, error);
