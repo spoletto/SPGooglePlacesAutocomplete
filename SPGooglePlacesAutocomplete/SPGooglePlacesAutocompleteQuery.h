@@ -72,7 +72,7 @@
 
 
 /*!
- Country code of the country to which results should be restricted to. Use "fr" for example to restrict your results to places within France.
+ Country code of the country to which results should be restricted to. Use "fr" for example to restrict your results to places within France. Must be a two character, ISO 3166-1 Alpha-2 compatible country code
  */
 @property (nonatomic, retain) NSString *countryCode;
 
