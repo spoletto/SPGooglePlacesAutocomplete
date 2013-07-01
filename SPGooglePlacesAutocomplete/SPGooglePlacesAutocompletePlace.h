@@ -41,4 +41,9 @@
  */
 - (void)resolveToPlacemark:(SPGooglePlacesPlacemarkResultBlock)block;
 
+/*!
+ Fetch Google Place Details.
+ */
+- (void)fetchPlaceDetails:(SPGooglePlacesPlaceDetailResultBlock)block;
+
 @end
