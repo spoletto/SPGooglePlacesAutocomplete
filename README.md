@@ -22,6 +22,7 @@ SPGooglePlacesAutocomplete requires a deployment target >= iOS 5.0.
     * SPGooglePlacesAutocompleteQuery.h/.m
     * SPGooglePlacesPlaceDetailQuery.h/.m
     * SPGooglePlacesAutocompletePlace.h/.m
+    * SPGooglePlacesAutocompletePlaceDetails.h/.m
 3. (Optional) If you would like to utilize the provided sample view controller for searching and mapping Places, link your project against the MapKit framework and copy the following files to your project:
     * SPGooglePlacesAutocompleteViewController.h/.m/.xib
     * locateButton(@2x).png
