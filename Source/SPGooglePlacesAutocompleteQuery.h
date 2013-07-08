@@ -70,5 +70,8 @@
  */
 @property (nonatomic) SPGooglePlacesAutocompletePlaceType types;
 
+@property (nonatomic) CLLocationCoordinate2D southWestBounds;
+@property (nonatomic) CLLocationCoordinate2D northEastBounds;
+
 @end
 

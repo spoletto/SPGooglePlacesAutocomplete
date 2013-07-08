@@ -15,7 +15,7 @@
 
 @implementation SPGooglePlacesAutocompleteQuery
 
-@synthesize input, sensor, key, offset, location, radius, language, types, resultBlock;
+@synthesize input, sensor, key, offset, location, southWestBounds, northEastBounds, radius, language, types, resultBlock;
 
 + (SPGooglePlacesAutocompleteQuery *)query {
     return [[self alloc] init];
@@ -50,6 +50,9 @@
     if (location.latitude != -1) {
         [url appendFormat:@"&location=%f,%f", location.latitude, location.longitude];
     }
+    if (CLLocationCoordinate2DIsValid(southWestBounds) && CLLocationCoordinate2DIsValid(northEastBounds)) {
+        [url appendFormat:@"&bounds=%f,%f%@%f,%f", southWestBounds.latitude, southWestBounds.longitude, [@"|" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], northEastBounds.latitude, northEastBounds.longitude];
+    }
     if (radius != NSNotFound) {
         [url appendFormat:@"&radius=%f", radius];
     }
@@ -59,6 +62,9 @@
     if (types != -1) {
         [url appendFormat:@"&types=%@", SPPlaceTypeStringForPlaceType(types)];
     }
+    
+    NSLog(@"googleURLString : %@",url);
+    
     return url;
 }
 
