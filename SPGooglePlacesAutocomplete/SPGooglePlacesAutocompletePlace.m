@@ -9,6 +9,8 @@
 #import "SPGooglePlacesAutocompletePlace.h"
 #import "SPGooglePlacesPlaceDetailQuery.h"
 
+#import <MapKit/MapKit.h>
+
 @interface SPGooglePlacesAutocompletePlace()
 @property (nonatomic, retain, readwrite) NSString *name;
 @property (nonatomic, retain, readwrite) NSString *reference;
@@ -48,10 +50,37 @@
         if (error) {
             block(nil, nil, error);
         } else {
+            if ([placeDictionary objectForKey:@"geometry"]) {
+                CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(360.0f, 360.0f);
+                
+                NSDictionary *location = [[placeDictionary objectForKey:@"geometry"] objectForKey:@"location"];
+                
+                if ([location objectForKey:@"lat"] && [location objectForKey:@"lng"]) {
+                    CGFloat latitude = 360.0f;
+                    CGFloat longitude = 360.0f;
+                    
+                    if ([location objectForKey:@"lat"]) {
+                        latitude = [[location objectForKey:@"lat"] floatValue];
+                    }
+                    
+                    if ([location objectForKey:@"lng"]) {
+                        longitude = [[location objectForKey:@"lng"] floatValue];
+                    }
+                    
+                    coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+                }
+                
+                if (CLLocationCoordinate2DIsValid(coordinate)) {
+                    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
+                    block(placemark, self.name, error);
+                    return;
+                }
+            }
+            
             NSString *addressString = [placeDictionary objectForKey:@"formatted_address"];
-            [[self geocoder] geocodeAddressString:addressString completionHandler:^(NSArray *placemarks, NSError *error) {
+            [geocoder geocodeAddressString:addressString completionHandler:^(NSArray *placemarks, NSError *error) {
                 if (error) {
-                    block(nil, nil, error);
+                    SPPresentAlertViewWithErrorAndTitle(error, @"Could not map selected Place");
                 } else {
                     CLPlacemark *placemark = [placemarks onlyObject];
                     block(placemark, self.name, error);
