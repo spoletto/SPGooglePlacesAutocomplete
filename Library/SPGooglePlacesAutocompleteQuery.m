@@ -18,7 +18,7 @@
 @synthesize input, sensor, key, offset, location, radius, language, types, resultBlock;
 
 + (SPGooglePlacesAutocompleteQuery *)query {
-    return [[[self alloc] init] autorelease];
+    return [[self alloc] init];
 }
 
 - (id)init {
@@ -28,7 +28,7 @@
         self.sensor = YES;
         self.key = kGoogleAPIKey;
         self.offset = NSNotFound;
-        self.location = CLLocationCoordinate2DMake(-1, -1);
+        self.location = nil;
         self.radius = NSNotFound;
         self.types = -1;
     }
@@ -39,14 +39,6 @@
     return [NSString stringWithFormat:@"Query URL: %@", [self googleURLString]];
 }
 
-- (void)dealloc {
-    [googleConnection release];
-    [responseData release];
-    [input release];
-    [key release];
-    [language release];
-    [super dealloc];
-}
 
 - (NSString *)googleURLString {
     NSMutableString *url = [NSMutableString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&sensor=%@&key=%@",
@@ -55,8 +47,8 @@
     if (offset != NSNotFound) {
         [url appendFormat:@"&offset=%u", offset];
     }
-    if (location.latitude != -1) {
-        [url appendFormat:@"&location=%f,%f", location.latitude, location.longitude];
+    if (self.location) {
+        [url appendFormat:@"&location=%f,%f", self.location.coordinate.latitude, self.location.coordinate.longitude];
     }
     if (radius != NSNotFound) {
         [url appendFormat:@"&radius=%f", radius];
@@ -71,8 +63,6 @@
 }
 
 - (void)cleanup {
-    [googleConnection release];
-    [responseData release];
     googleConnection = nil;
     responseData = nil;
     self.resultBlock = nil;
@@ -84,7 +74,7 @@
 }
 
 - (void)fetchPlaces:(SPGooglePlacesAutocompleteResultBlock)block {
-    if (!SPEnsureGoogleAPIKey()) {
+    if (!SPEnsureGoogleAPIKey(self.key)) {
         return;
     }
     

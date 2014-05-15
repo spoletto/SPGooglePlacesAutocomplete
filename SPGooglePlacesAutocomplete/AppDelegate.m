@@ -14,18 +14,14 @@
 @synthesize window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];    
     
-    SPGooglePlacesAutocompleteViewController *viewController = [[[SPGooglePlacesAutocompleteViewController alloc] init] autorelease];
+    SPGooglePlacesAutocompleteViewController *viewController = [[SPGooglePlacesAutocompleteViewController alloc] init];
     self.window.rootViewController = viewController;
     [self.window makeKeyAndVisible];
     
     return YES;
 }
 
-- (void)dealloc {
-    [window release];
-    [super dealloc];
-}
 
 @end
