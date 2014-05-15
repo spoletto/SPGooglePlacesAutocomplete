@@ -74,7 +74,7 @@
 }
 
 - (void)fetchPlaces:(SPGooglePlacesAutocompleteResultBlock)block {
-    if (!SPEnsureGoogleAPIKey()) {
+    if (!SPEnsureGoogleAPIKey(self.key)) {
         return;
     }
     

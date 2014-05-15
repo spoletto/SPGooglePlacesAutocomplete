@@ -56,7 +56,7 @@
 }
 
 - (void)fetchPlaceDetail:(SPGooglePlacesPlaceDetailResultBlock)block {
-    if (!SPEnsureGoogleAPIKey()) {
+    if (!SPEnsureGoogleAPIKey(self.key)) {
         return;
     }
     

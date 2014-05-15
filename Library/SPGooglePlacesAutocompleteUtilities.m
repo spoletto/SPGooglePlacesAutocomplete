@@ -26,9 +26,9 @@ NSString *SPPlaceTypeStringForPlaceType(SPGooglePlacesAutocompletePlaceType type
     return (type == SPPlaceTypeGeocode) ? @"geocode" : @"establishment";
 }
 
-BOOL SPEnsureGoogleAPIKey() {
+BOOL SPEnsureGoogleAPIKey(NSString *key) {
     BOOL userHasProvidedAPIKey = YES;
-    if ([kGoogleAPIKey isEqualToString:@"YOUR_API_KEY"]) {
+    if ([key isEqualToString:@"YOUR_API_KEY"] || [key isEqualToString:@""] || !key) {
         userHasProvidedAPIKey = NO;
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"API Key Needed" message:@"Please replace kGoogleAPIKey with your Google API key." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [alert show];
