@@ -36,12 +36,6 @@
     [super viewDidUnload];
 }
 
-- (void)dealloc {
-    [selectedPlaceAnnotation release];
-    [mapView release];
-    [searchQuery release];
-    [super dealloc];
-}
 
 - (IBAction)recenterMapToUserLocation:(id)sender {
     MKCoordinateRegion region;
@@ -71,7 +65,7 @@
     static NSString *cellIdentifier = @"SPGooglePlacesAutocompleteCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
     cell.textLabel.font = [UIFont fontWithName:@"GillSans" size:16.0];
@@ -97,7 +91,6 @@
 
 - (void)addPlacemarkAnnotationToMap:(CLPlacemark *)placemark addressString:(NSString *)address {
     [self.mapView removeAnnotation:selectedPlaceAnnotation];
-    [selectedPlaceAnnotation release];
     
     selectedPlaceAnnotation = [[MKPointAnnotation alloc] init];
     selectedPlaceAnnotation.coordinate = placemark.location.coordinate;
@@ -141,8 +134,7 @@
         if (error) {
             SPPresentAlertViewWithErrorAndTitle(error, @"Could not fetch Places");
         } else {
-            [searchResultPlaces release];
-            searchResultPlaces = [places retain];
+            searchResultPlaces = places;
             [self.searchDisplayController.searchResultsTableView reloadData];
         }
     }];
@@ -193,7 +185,7 @@
     static NSString *annotationIdentifier = @"SPGooglePlacesAutocompleteAnnotation";
     MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
     if (!annotationView) {
-        annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier] autorelease];
+        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier];
     }
     annotationView.animatesDrop = YES;
     annotationView.canShowCallout = YES;
