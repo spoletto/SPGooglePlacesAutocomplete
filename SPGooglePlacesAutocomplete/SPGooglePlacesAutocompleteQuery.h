@@ -53,7 +53,7 @@
 /*!
  The point around which you wish to retrieve Place information.
  */
-@property (nonatomic) CLLocationCoordinate2D location;
+@property (nonatomic, strong) CLLocation *location;
 
 /*!
  The distance (in meters) within which to return Place results. Note that setting a radius biases results to the indicated area, but may not fully restrict results to the specified area.

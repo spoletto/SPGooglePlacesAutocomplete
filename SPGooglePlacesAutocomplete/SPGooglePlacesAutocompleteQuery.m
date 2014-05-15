@@ -28,7 +28,7 @@
         self.sensor = YES;
         self.key = kGoogleAPIKey;
         self.offset = NSNotFound;
-        self.location = CLLocationCoordinate2DMake(-1, -1);
+        self.location = nil;
         self.radius = NSNotFound;
         self.types = -1;
     }
@@ -55,8 +55,8 @@
     if (offset != NSNotFound) {
         [url appendFormat:@"&offset=%u", offset];
     }
-    if (location.latitude != -1) {
-        [url appendFormat:@"&location=%f,%f", location.latitude, location.longitude];
+    if (self.location) {
+        [url appendFormat:@"&location=%f,%f", self.location.coordinate.latitude, self.location.coordinate.longitude];
     }
     if (radius != NSNotFound) {
         [url appendFormat:@"&radius=%f", radius];

@@ -135,7 +135,7 @@
 #pragma mark UISearchDisplayDelegate
 
 - (void)handleSearchForSearchString:(NSString *)searchString {
-    searchQuery.location = self.mapView.userLocation.coordinate;
+    searchQuery.location = self.mapView.userLocation.location;
     searchQuery.input = searchString;
     [searchQuery fetchPlaces:^(NSArray *places, NSError *error) {
         if (error) {
