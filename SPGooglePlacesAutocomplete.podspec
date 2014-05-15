@@ -17,5 +17,5 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/chrischentickbox/SPGooglePlacesAutocomplete.git", :tag => '1.0.2'}
   s.source_files  = 'SPGooglePlacesAutocomplete/*.{h,m}'
   s.frameworks = 'CoreLocation'
-  s.requires_arc = true
+  s.requires_arc = false 
 end
