@@ -28,7 +28,7 @@
 /*!
  A textual identifier that uniquely identifies a place, returned from a Place search request.
  */
-@property (nonatomic, retain) NSString *reference;
+@property (nonatomic, retain) NSString *placeIdentifier;
 
 /*!
  Indicates whether or not the Place request came from a device using a location sensor (e.g. a GPS) to determine the location sent in this request. This value must be either true or false. Defaults to YES.

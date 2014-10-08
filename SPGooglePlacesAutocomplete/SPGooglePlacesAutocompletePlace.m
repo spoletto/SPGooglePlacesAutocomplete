@@ -26,7 +26,7 @@
     SPGooglePlacesAutocompletePlace *place = [[[self alloc] init] autorelease];
     place.name = [placeDictionary objectForKey:@"description"];
     place.reference = [placeDictionary objectForKey:@"reference"];
-    place.identifier = [placeDictionary objectForKey:@"id"];
+    place.identifier = [placeDictionary objectForKey:@"place_id"];
     place.type = SPPlaceTypeFromDictionary(placeDictionary);
     return place;
 }
@@ -45,7 +45,7 @@
 
 - (void)resolveEstablishmentPlaceToPlacemark:(SPGooglePlacesPlacemarkResultBlock)block {
     SPGooglePlacesPlaceDetailQuery *query = [SPGooglePlacesPlaceDetailQuery query];
-    query.reference = self.reference;
+    query.placeIdentifier = self.identifier;
     [query fetchPlaceDetail:^(NSDictionary *placeDictionary, NSError *error) {
         if (error) {
             block(nil, nil, error);
