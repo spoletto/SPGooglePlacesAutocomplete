@@ -18,7 +18,7 @@
 @synthesize input, sensor, key, offset, location, radius, language, types, resultBlock;
 
 + (SPGooglePlacesAutocompleteQuery *)query {
-    return [[[self alloc] init] autorelease];
+    return [[self alloc] init];
 }
 
 - (id)init {
@@ -37,15 +37,6 @@
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"Query URL: %@", [self googleURLString]];
-}
-
-- (void)dealloc {
-    [googleConnection release];
-    [responseData release];
-    [input release];
-    [key release];
-    [language release];
-    [super dealloc];
 }
 
 - (NSString *)googleURLString {
@@ -71,8 +62,6 @@
 }
 
 - (void)cleanup {
-    [googleConnection release];
-    [responseData release];
     googleConnection = nil;
     responseData = nil;
     self.resultBlock = nil;

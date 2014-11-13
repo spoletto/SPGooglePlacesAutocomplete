@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31CA0C591A14344C0082C552 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 31CA0C581A14344C0082C552 /* Default-568h@2x.png */; };
 		9C4A632215B64A3F00E15FBA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A632115B64A3F00E15FBA /* UIKit.framework */; };
 		9C4A632415B64A3F00E15FBA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A632315B64A3F00E15FBA /* Foundation.framework */; };
 		9C4A632615B64A3F00E15FBA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A632515B64A3F00E15FBA /* CoreGraphics.framework */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		31CA0C581A14344C0082C552 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9C4A631D15B64A3F00E15FBA /* SPGooglePlacesAutocomplete.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPGooglePlacesAutocomplete.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C4A632115B64A3F00E15FBA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9C4A632315B64A3F00E15FBA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -76,6 +78,7 @@
 		9C4A631215B64A3F00E15FBA = {
 			isa = PBXGroup;
 			children = (
+				31CA0C581A14344C0082C552 /* Default-568h@2x.png */,
 				9C4A632715B64A3F00E15FBA /* SPGooglePlacesAutocomplete */,
 				9C4A632015B64A3F00E15FBA /* Frameworks */,
 				9C4A631E15B64A3F00E15FBA /* Products */,
@@ -172,7 +175,7 @@
 		9C4A631415B64A3F00E15FBA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Stephen Poletto";
 			};
 			buildConfigurationList = 9C4A631715B64A3F00E15FBA /* Build configuration list for PBXProject "SPGooglePlacesAutocomplete" */;
@@ -202,6 +205,7 @@
 				9C4A63A615B6C01100E15FBA /* location.png in Resources */,
 				9C4A63A715B6C01100E15FBA /* location@2x.png in Resources */,
 				9C4A63AE15B6C0DB00E15FBA /* locateButton.png in Resources */,
+				31CA0C591A14344C0082C552 /* Default-568h@2x.png in Resources */,
 				9C4A63AF15B6C0DB00E15FBA /* locateButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,6 +262,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -285,6 +290,7 @@
 		9C4A633615B64A3F00E15FBA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPGooglePlacesAutocomplete/SPGooglePlacesAutocomplete-Prefix.pch";
 				INFOPLIST_FILE = "SPGooglePlacesAutocomplete/SPGooglePlacesAutocomplete-Info.plist";
@@ -297,6 +303,7 @@
 		9C4A633715B64A3F00E15FBA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPGooglePlacesAutocomplete/SPGooglePlacesAutocomplete-Prefix.pch";
 				INFOPLIST_FILE = "SPGooglePlacesAutocomplete/SPGooglePlacesAutocomplete-Info.plist";
@@ -325,6 +332,7 @@
 				9C4A633715B64A3F00E15FBA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
