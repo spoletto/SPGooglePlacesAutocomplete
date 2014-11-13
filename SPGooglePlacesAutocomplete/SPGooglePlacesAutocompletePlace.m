@@ -86,16 +86,14 @@
                         }
                     }];
                 } else {
-                    NSString *errorDomain = [[NSBundle mainBundle] bundleIdentifier];
                     NSDictionary *userInfo = @{ NSLocalizedDescriptionKey:NSLocalizedString(@"Could not resolve place.", nil) };
-                    error = [[NSError alloc] initWithDomain:errorDomain code:-1 userInfo:userInfo];
+                    error = [[NSError alloc] initWithDomain:@"com.spoletto.googleplaces" code:kGoogleAPINSErrorCode userInfo:userInfo];
                     
                     block(nil, self.name, error);
                 }
             } else {
-                NSString *errorDomain = [[NSBundle mainBundle] bundleIdentifier];
                 NSDictionary *userInfo = @{ NSLocalizedDescriptionKey:NSLocalizedString(@"Could not resolve place.", nil) };
-                error = [[NSError alloc] initWithDomain:errorDomain code:-1 userInfo:userInfo];
+                error = [[NSError alloc] initWithDomain:@"com.spoletto.googleplaces" code:kGoogleAPINSErrorCode userInfo:userInfo];
                 
                 block(nil, self.name, error);
             }
