@@ -53,7 +53,7 @@
                                                              [input stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
                                                              SPBooleanStringForBool(sensor), key];
     if (offset != NSNotFound) {
-        [url appendFormat:@"&offset=%u", offset];
+        [url appendFormat:@"&offset=%lu", (unsigned long)offset];
     }
     if (location.latitude != -1) {
         [url appendFormat:@"&location=%f,%f", location.latitude, location.longitude];

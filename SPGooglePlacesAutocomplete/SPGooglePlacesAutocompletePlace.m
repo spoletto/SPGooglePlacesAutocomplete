@@ -50,15 +50,55 @@
         if (error) {
             block(nil, nil, error);
         } else {
-            NSString *addressString = [placeDictionary objectForKey:@"formatted_address"];
-            [[self geocoder] geocodeAddressString:addressString completionHandler:^(NSArray *placemarks, NSError *error) {
-                if (error) {
-                    block(nil, nil, error);
-                } else {
-                    CLPlacemark *placemark = [placemarks firstObject];
-                    block(placemark, self.name, error);
+            if (placeDictionary) {
+                NSString *placeAddress = [placeDictionary objectForKey:@"formatted_address"];
+                NSDictionary *placeGeometryDictionary = [placeDictionary objectForKey:@"geometry"];
+                NSDictionary *placeLocationDictionary = nil;
+                NSNumber *latitude = nil;
+                NSNumber *longitude = nil;
+                
+                if (placeGeometryDictionary) {
+                    placeLocationDictionary = [placeGeometryDictionary objectForKey:@"location"];
                 }
-            }];
+                
+                if (placeLocationDictionary) {
+                    latitude = [placeLocationDictionary objectForKey:@"lat"];
+                    longitude = [placeLocationDictionary objectForKey:@"lng"];
+                }
+                
+                if (latitude && longitude) {
+                    CLLocation *placeLocation = [[CLLocation alloc] initWithLatitude:[latitude doubleValue] longitude:[longitude doubleValue]];
+                    [[self geocoder] reverseGeocodeLocation:placeLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+                        if (error) {
+                            block(nil, nil, error);
+                        } else {
+                            CLPlacemark *placemark = [placemarks firstObject];
+                            block(placemark, self.name, error);
+                        }
+                    }];
+                } else if (placeAddress) {
+                    [[self geocoder] geocodeAddressString:placeAddress completionHandler:^(NSArray *placemarks, NSError *error) {
+                        if (error) {
+                            block(nil, nil, error);
+                        } else {
+                            CLPlacemark *placemark = [placemarks firstObject];
+                            block(placemark, self.name, error);
+                        }
+                    }];
+                } else {
+                    NSString *errorDomain = [[NSBundle mainBundle] bundleIdentifier];
+                    NSDictionary *userInfo = @{ NSLocalizedDescriptionKey:NSLocalizedString(@"Could not resolve place.", nil) };
+                    error = [[NSError alloc] initWithDomain:errorDomain code:-1 userInfo:userInfo];
+                    
+                    block(nil, self.name, error);
+                }
+            } else {
+                NSString *errorDomain = [[NSBundle mainBundle] bundleIdentifier];
+                NSDictionary *userInfo = @{ NSLocalizedDescriptionKey:NSLocalizedString(@"Could not resolve place.", nil) };
+                error = [[NSError alloc] initWithDomain:errorDomain code:-1 userInfo:userInfo];
+                
+                block(nil, self.name, error);
+            }
         }
     }];
 }
