@@ -14,10 +14,10 @@
 
 @implementation SPGooglePlacesPlaceDetailQuery
 
-@synthesize reference, sensor, key, language, resultBlock;
+@synthesize placeIdentifier, sensor, key, language, resultBlock;
 
 + (SPGooglePlacesPlaceDetailQuery *)query {
-    return [[[self alloc] init] autorelease];
+    return [[self alloc] init];
 }
 
 - (id)init {
@@ -34,18 +34,9 @@
     return [NSString stringWithFormat:@"Query URL: %@", [self googleURLString]];
 }
 
-- (void)dealloc {
-    [googleConnection release];
-    [responseData release];
-    [reference release];
-    [key release];
-    [language release];
-    [super dealloc];
-}
-
 - (NSString *)googleURLString {
-    NSMutableString *url = [NSMutableString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?reference=%@&sensor=%@&key=%@",
-                            reference, SPBooleanStringForBool(sensor), key];
+    NSMutableString *url = [NSMutableString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?placeid=%@&sensor=%@&key=%@",
+                            placeIdentifier, SPBooleanStringForBool(sensor), key];
     if (language) {
         [url appendFormat:@"&language=%@", language];
     }
@@ -53,8 +44,6 @@
 }
 
 - (void)cleanup {
-    [googleConnection release];
-    [responseData release];
     googleConnection = nil;
     responseData = nil;
     self.resultBlock = nil;
