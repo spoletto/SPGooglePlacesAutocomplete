@@ -42,16 +42,20 @@
 }
 
 - (void)resolveEstablishmentPlaceToPlacemark:(SPGooglePlacesPlacemarkResultBlock)block {
-    SPGooglePlacesPlaceDetailQuery *query = [SPGooglePlacesPlaceDetailQuery query];
+    SPGooglePlacesPlaceDetailQuery *query = [[SPGooglePlacesPlaceDetailQuery alloc] initWithApiKey:self.key];
     query.reference = self.reference;
     [query fetchPlaceDetail:^(NSDictionary *placeDictionary, NSError *error) {
         if (error) {
             block(nil, nil, error);
         } else {
-            NSString *addressString = [placeDictionary objectForKey:@"formatted_address"];
-            [[self geocoder] geocodeAddressString:addressString completionHandler:^(NSArray *placemarks, NSError *error) {
+            CLLocationDegrees latitude = [placeDictionary[@"geometry"][@"location"][@"lat"] floatValue];
+            CLLocationDegrees longitude = [placeDictionary[@"geometry"][@"location"][@"lng"] floatValue];
+
+            CLLocation *location = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+
+            [[self geocoder] reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
                 if (error) {
-                    block(nil, nil, error);
+                    [self resolveGecodePlaceToPlacemark:block];
                 } else {
                     CLPlacemark *placemark = [placemarks onlyObject];
                     block(placemark, self.name, error);
