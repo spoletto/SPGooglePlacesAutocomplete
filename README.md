@@ -33,7 +33,7 @@ SPGooglePlacesAutocomplete requires a deployment target >= iOS 5.0.
 Instantiate a new SPGooglePlacesAutocompleteQuery and fill in the properties you'd like to specify.
 
 ``` objective-c
-#import "SPGooglePlacesAutocompleteQuery.h"
+# import "SPGooglePlacesAutocompleteQuery.h"
 
 ...
 
